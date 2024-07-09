@@ -57,8 +57,29 @@ describe('signup', function () {
             .should('have.text', 'Agora você pode fazer seu login no Samurai Barbershop!')
 
     })
+    // it.only(texto) -- para executar somente 1 teste
+    it.only('Is not possible add user with the same email', function () {
 
-    it('Is not possible add user with the same email', function () {
+        const userPost = {
+            email: 'erica.cavalher@gmail.com',
+            is_provider: true,
+            name: 'Erica Cavalher',
+            password: 'Kika1234'
+        }
+
+        cy.task('removeUser', userPost.email)
+        .then(function (result) {
+            console.log(result)
+        })
+
+        // Adicionar um user no banco antes do teste para ter certeza que funciona sem dependencia de outros steps.
+        cy.request(
+            'POST',
+            'http://localhost:3333/users',
+            userPost
+        ).then(function(response){
+            expect(response.status).to.eq(200)
+        })
 
         cy.visit('/signup')
 
