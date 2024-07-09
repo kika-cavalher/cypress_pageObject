@@ -15,3 +15,7 @@ arquivo cypress.json estão as configs basicas do projeto.
 
 Para iniciar o teste > Usar a pagina de testes do cypress.
 
+no arquivo plugins -- index.js tem a integração e exclusão dos dados em banco
+
+
+
