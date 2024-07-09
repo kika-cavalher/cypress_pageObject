@@ -9,9 +9,9 @@ Criar pasta test
 yarn init (na pasta test)
 
 yarn add cypress@9.5.0
-npx cypress open -- preparar o projeto para trabalhar com o framework
+npx cypress open -- preparar o projeto para trabalhar com o framework e também chamar para abrir a pagina para rodar testes. 
 
 arquivo cypress.json estão as configs basicas do projeto.
 
-Para iniciar o teste > Usar a pagina de testes do cypress. 
+Para iniciar o teste > Usar a pagina de testes do cypress.
 
