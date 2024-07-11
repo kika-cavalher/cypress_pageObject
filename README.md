@@ -23,4 +23,8 @@ cd/apps/web Iniciar WEB -- yarn start
 cd/tests Iniciar testes -- npx cypress open
 
 
+Instalar xpath
+yarn add cypress-xpath
+
+
 

@@ -1,0 +1,3 @@
+exports.el = {
+    toastMsg: '.toast'
+}
