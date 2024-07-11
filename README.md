@@ -18,4 +18,9 @@ Para iniciar o teste > Usar a pagina de testes do cypress.
 no arquivo plugins -- index.js tem a integração e exclusão dos dados em banco
 
 
+cd/apps/api Iniciar API -- yarn start
+cd/apps/web Iniciar WEB -- yarn start
+cd/tests Iniciar testes -- npx cypress open
+
+
 

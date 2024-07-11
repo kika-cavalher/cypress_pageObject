@@ -25,9 +25,9 @@ describe('signup', function () {
 
             cy.visit('/signup')
 
-            cy.get('input[placeholder="Nome"]').type(user.name)
-            cy.get('input[placeholder="E-mail"]').type(user.email)
-            cy.get('input[placeholder="Senha"]').type(user.password)
+            cy.get('input[placeholder^="Nome"]').type(user.name)       // ^ para quando começa com o texto.
+            cy.get('input[placeholder$="E-mail"]').type(user.email)    // & para quando termina com o texto.
+            cy.get('input[placeholder*="Senha"]').type(user.password)   // * para quando contain em qualquer poisçao o texto.
             cy.contains('button[type="submit"]', 'Cadastrar').click()
 
             cy.get('.toast')
