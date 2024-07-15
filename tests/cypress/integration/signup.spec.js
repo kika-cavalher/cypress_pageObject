@@ -1,8 +1,6 @@
 const { faker } = require('@faker-js/faker');
 
 import signupPage from '../support/pages/signup/index.js'
-import toast from '../support/components/toast/index.js'
-
 
 // it.only(texto) -- para executar somente 1 teste
 //Como se fosse o plano de teste.
