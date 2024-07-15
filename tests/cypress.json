@@ -1,5 +1,12 @@
 {
     "baseUrl": "http://localhost:3000/",
     "viewportWidth": 1440,
-    "viewportHeight": 900
+    "viewportHeight": 900,
+    "dbConfig": {
+        "host": "tai.db.elephantsql.com",
+        "user": "fidsnwki",
+        "password": "HZZ0qGElE_naN6GtG72qgFD35jgua2YY",
+        "database": "fidsnwki",
+        "porta": 5432
+    }
 }

@@ -135,7 +135,7 @@ context('Senha incorreta', function () {
 })
 
 context('Filds required', function () {
-    it.only('Must be visible error mensage', function () {
+    it('Must be visible error mensage', function () {
         signupPage.goToPage()
         signupPage.submitForm()
         signupPage.alertErrorName()
