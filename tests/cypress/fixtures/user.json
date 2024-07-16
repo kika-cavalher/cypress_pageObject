@@ -25,5 +25,11 @@
     "name": "Erica Cavalher",
     "email": "erica.cavalher@gmail.com",
     "password": "1234"
+  },
+  "newPass": {
+    "name": "Erica Cavalher",
+    "email": "erica.cavalher@gmail.com",
+    "password": "Kika1234",
+    "newPassword": "Kika1111"
   }
 }

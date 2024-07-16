@@ -8,7 +8,8 @@ describe('signin', function () {
           this.success = user.success;
           this.emailInv = user.emailInv;
           this.passInv = user.passInv;
-          this.passWrong = user.passWrong
+          this.passWrong = user.passWrong;
+          this.newPass = user.newPass
         });
       });
 
@@ -103,7 +104,7 @@ describe('signin', function () {
         it('Must show toast send email for new password:', function () {
             signinPage.goToPage()
             signinPage.enterForgotPassword()
-            signinPage.fillFormEmailForget(this.success)
+            signinPage.fillFormEmailForget(this.newPass)
             signinPage.submitForgotEmail()
             signinPage.toast.textConfirm('Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada.')
         })
@@ -111,12 +112,20 @@ describe('signin', function () {
         it.only('Can change the password and create new one', function () {
             signinPage.goToPage()
             signinPage.enterForgotPassword()
-            signinPage.fillFormEmailForget(this.success)
+            signinPage.fillFormEmailForget(this.newPass)
             signinPage.submitForgotEmail()
             signinPage.toast.textConfirm('Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada.')
         
             cy.recoveryPass(this.success)
-            
+
+            signinPage.goToForgotEmailPage()
+            signinPage.fillFormNewPass(this.newPass)
+            signinPage.submitNewPass()
+
+            signinPage.fillFormAfterChangePass(this.newPass)
+            signinPage.submitForm()
+            dashPage.header.userLoggedIn(this.success.name)
+
         })
     })
 
