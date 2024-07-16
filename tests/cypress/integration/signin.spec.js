@@ -75,7 +75,21 @@ describe('signin', function () {
                 signinPage.errorField.alertErrorEmail()
             })
         })
-
     })
 
+    context('When the user write a incorrect password', function () {
+        it.only('Must warning error in password:', function () {
+            const user = {
+                email: 'erica.cavalher@gmail.com',
+                password: '1234'
+            }
+
+            signinPage.goToPage()
+            signinPage.fillForm(user)
+            signinPage.submitForm()
+
+            signinPage.toast.textConfirm('Ocorreu um erro ao fazer login, verifique suas credenciais.')
+        })
+
+    })
 })
