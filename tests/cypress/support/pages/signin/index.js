@@ -5,6 +5,10 @@ import toast from '../../components/toast/index.js'
 
 
 class SigninPage {
+    constructor() {
+        this.toast = toast
+    }
+
     goToPage() {
         cy.visit('/')
     }
