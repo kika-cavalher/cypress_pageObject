@@ -96,11 +96,27 @@ describe('signin', function () {
     })
 
     context('I forgot my password and I need a new one', function () {
-        it('Must warning error in email:', function () {
+        beforeEach(function () {
+            cy.postUser(this.success)
+        })
+        
+        it('Must show toast send email for new password:', function () {
             signinPage.goToPage()
+            signinPage.enterForgotPassword()
+            signinPage.fillFormEmailForget(this.success)
+            signinPage.submitForgotEmail()
+            signinPage.toast.textConfirm('Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada.')
+        })
 
-
-
+        it.only('Can change the password and create new one', function () {
+            signinPage.goToPage()
+            signinPage.enterForgotPassword()
+            signinPage.fillFormEmailForget(this.success)
+            signinPage.submitForgotEmail()
+            signinPage.toast.textConfirm('Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada.')
+        
+            cy.recoveryPass(this.success)
+            
         })
     })
 

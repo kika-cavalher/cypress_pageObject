@@ -15,3 +15,9 @@ Cypress.Commands.add('delUser', (user) => {
         console.log(result);
     });
 });
+
+Cypress.Commands.add('recoveryPass', (user) => {
+    cy.request('POST', 'http://localhost:3333/password/forgot', {email: user.email}).then((response) => {
+        expect(response.status).to.eq(204);
+    });
+});

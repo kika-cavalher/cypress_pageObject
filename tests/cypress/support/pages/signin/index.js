@@ -28,6 +28,22 @@ class SigninPage {
         cy.contains(el.signinButton)
             .click()
     }
+
+    enterForgotPassword() {
+        cy.contains(el.aForgotPass)
+            .click()
+    }
+
+    fillFormEmailForget(user) {     
+        cy.get(el.email)
+            .clear()
+            .type(user.email)
+    }
+
+    submitForgotEmail() {
+        cy.xpath(el.forgotButton)
+            .click()
+    }
 }
 
 export default new SigninPage()
