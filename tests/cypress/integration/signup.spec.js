@@ -66,7 +66,7 @@ describe('signup', function () {
             // cy.get('body')
         })
     })
-
+    
     // Mudando o status da requisição para aceitar e não adicionar no banco. 
     it('Must signup a new randon user and force status 200', function () {
         const userRandon = {
@@ -89,55 +89,56 @@ describe('signup', function () {
         cy.wait('@postUser')
         signupPage.toast.textConfirm('Agora você pode fazer seu login no Samurai Barbershop!')
     })
-})
 
-context('Password incorreta', function () {
-    const userErrorEmail = {
-        email: 'erica.cavalhergmail.com',
-        name: 'Erica Cavalher',
-        password: 'KIka1234'
-    }
-
-    it('Must be visible error mensage', function () {
-        signupPage.goToPage()
-        signupPage.fillForm(userErrorEmail)
-        signupPage.submitForm()
-        signupPage.errorField.alertErrorEmail()
-    })
-})
-
-context('Senha incorreta', function () {
-    const passwords = ['1', '2', '3', 'a4', 'a^%',]
-
-    beforeEach(function () {
-        signupPage.goToPage()
-    })
-
-    passwords.forEach(function (pass) {
-
-        const userErrorPassword = {
-            email: 'erica.cavalher@gmail.com',
+    context('Password incorreta', function () {
+        const userErrorEmail = {
+            email: 'erica.cavalhergmail.com',
             name: 'Erica Cavalher',
-            password: pass
+            password: 'KIka1234'
         }
-        it('Nao deve executar com a senha:' + pass, function () {
-            signupPage.fillForm(userErrorPassword)
+
+        it('Must be visible error mensage', function () {
+            signupPage.goToPage()
+            signupPage.fillForm(userErrorEmail)
             signupPage.submitForm()
+            signupPage.errorField.alertErrorEmail()
         })
     })
 
-    afterEach(function () {
-        signupPage.errorField.alertErrorPassword()
+    context('Senha incorreta', function () {
+        const passwords = ['1', '2', '3', 'a4', 'a^%',]
+
+        beforeEach(function () {
+            signupPage.goToPage()
+        })
+
+        passwords.forEach(function (pass) {
+
+            const userErrorPassword = {
+                email: 'erica.cavalher@gmail.com',
+                name: 'Erica Cavalher',
+                password: pass
+            }
+            it('Nao deve executar com a senha:' + pass, function () {
+                signupPage.fillForm(userErrorPassword)
+                signupPage.submitForm()
+            })
+        })
+
+        afterEach(function () {
+            signupPage.errorField.alertErrorPassword()
+        })
+
     })
 
-})
-
-context('Filds required', function () {
-    it('Must be visible error mensage', function () {
-        signupPage.goToPage()
-        signupPage.submitForm()
-        signupPage.errorField.alertErrorName()
-        signupPage.errorField.alertErrorEmail()
-        signupPage.errorField.alertErrorPassword()
+    context('Filds required', function () {
+        it('Must be visible error mensage', function () {
+            signupPage.goToPage()
+            signupPage.submitForm()
+            signupPage.errorField.alertErrorName()
+            signupPage.errorField.alertErrorEmail()
+            signupPage.errorField.alertErrorPassword()
+        })
     })
+    
 })

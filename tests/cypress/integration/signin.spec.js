@@ -78,7 +78,7 @@ describe('signin', function () {
     })
 
     context('When the user write a incorrect password', function () {
-        it.only('Must warning error in password:', function () {
+        it('Must warning error in password:', function () {
             const user = {
                 email: 'erica.cavalher@gmail.com',
                 password: '1234'
@@ -92,4 +92,15 @@ describe('signin', function () {
         })
 
     })
+
+    context('When the user try to enter without fill the forms', function () {
+        it('Must warning error in email:', function () {
+            signinPage.goToPage()
+            signinPage.submitForm()
+
+            signinPage.errorField.alertErrorEmail()
+            signinPage.errorField.alertErrorPassword()
+        })
+    })
+
 })

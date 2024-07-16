@@ -26,7 +26,6 @@ class SignupPage {
             .clear()
             .type(user.password)  
     }
-    }
 
     submitForm() {
         cy.contains(el.signupButton).click()
