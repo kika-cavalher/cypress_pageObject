@@ -61,11 +61,14 @@ describe('signin', function () {
             'xpTo123'
         ]
 
+        before(function () {
+            signinPage.goToPage()
+        })
+
         emails.forEach(function (email) {
             it('Must warning error in email:' + email, function () {
                 const user = { email: email, password: 'Kika1234' }
 
-                signinPage.goToPage()
                 signinPage.fillForm(user)
                 signinPage.submitForm()
 

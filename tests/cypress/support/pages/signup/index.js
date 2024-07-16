@@ -16,9 +16,16 @@ class SignupPage {
     }
 
     fillForm(user) {
-        cy.get(el.name).type(user.name)       
-        cy.get(el.email).type(user.email)    
-        cy.get(el.password).type(user.password)  
+        cy.get(el.name)
+            .clear()
+            .type(user.name)       
+        cy.get(el.email)
+            .clear()
+            .type(user.email)    
+        cy.get(el.password)
+            .clear()
+            .type(user.password)  
+    }
     }
 
     submitForm() {
