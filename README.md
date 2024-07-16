@@ -27,4 +27,17 @@ Instalar xpath
 yarn add cypress-xpath
 
 
+Erro de API:
+  code: 'EAUTH',
+  response: '535 Authentication failed',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+
+Resolver: Na web entrar no site: https://ethereal.email/
+Criar uma nova conta.
+Depois no arquivo mudar a conta criada por essa nova 
+Arquivo: apps\api\dist\shared\container\providers\MailProvider\implementations\EtherealMailProvider.js
+
+
+
 

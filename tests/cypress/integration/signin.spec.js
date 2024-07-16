@@ -95,4 +95,13 @@ describe('signin', function () {
         })
     })
 
+    context('I forgot my password and I need a new one', function () {
+        it('Must warning error in email:', function () {
+            signinPage.goToPage()
+
+
+
+        })
+    })
+
 })
