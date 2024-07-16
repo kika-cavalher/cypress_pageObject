@@ -2,47 +2,43 @@ import signinPage from '../support/pages/signin/index.js'
 import dashPage from '../support/pages/header'
 
 describe('signin', function () {
-    context('When the user is top das galaxias', function () {
-        const user = {
-            name: 'Erica Cavalher',
-            is_provider: true,
-            email: 'erica.cavalher@gmail.com',
-            password: 'Kika1234'
-        }
+    beforeEach(function () {
+        cy.fixture("user").then((user) => {
+          // Armazena os dados do fixture no contexto de teste
+          this.success = user.success;
+          this.emailInv = user.emailInv;
+          this.passInv = user.passInv;
+          this.passWrong = user.passWrong
+        });
+      });
 
+    context('When the user is top das galaxias', function () {
         // Simplificando a chamada de remover e adicionar o user novamente colocando como comando nativo. 
-        before(function () {
-            cy.postUser(user)
-        })
+        beforeEach(function () {
+            cy.postUser(this.success)
+        });
 
         it('Must login with success ', function () {
             signinPage.goToPage()
-            signinPage.fillForm(user)
+            signinPage.fillForm(this.success)
             signinPage.submitForm()
 
-            dashPage.header.userLoggedIn(user.name)
+            dashPage.header.userLoggedIn(this.success.name)
         })
     })
 
     context('When the user is top but the password is incorrect', function () {
-        // Para criar uma variavel que pode mudar e não uma const.
-        let user = {
-            name: 'Erica Cavalher',
-            is_provider: true,
-            email: 'erica.cavalher@gmail.com',
-            password: 'Kika1234'
-        }
 
-        before(function () {
+        beforeEach(function () {
             // Para fazer um call back e executar um antes do outro e nao tudo junto)
-            cy.postUser(user).then(function () {
-                user.password = 'Kika1111'
+            cy.postUser(this.success).then(function () {
+                this.success.password = 'Kika1111'
             })
         })
 
         it('Must warning error in credentials', function () {
             signinPage.goToPage()
-            signinPage.fillForm(user)
+            signinPage.fillForm(this.success)
             signinPage.submitForm()
 
             signinPage.toast.textConfirm('Ocorreu um erro ao fazer login, verifique suas credenciais.')
@@ -67,9 +63,10 @@ describe('signin', function () {
 
         emails.forEach(function (email) {
             it('Must warning error in email:' + email, function () {
-                const user = { email: email, password: 'Kika1234' }
 
-                signinPage.fillForm(user)
+                this.emailInv.email = email
+
+                signinPage.fillForm(this.emailInv)
                 signinPage.submitForm()
 
                 signinPage.errorField.alertErrorEmail()
@@ -79,13 +76,8 @@ describe('signin', function () {
 
     context('When the user write a incorrect password', function () {
         it('Must warning error in password:', function () {
-            const user = {
-                email: 'erica.cavalher@gmail.com',
-                password: '1234'
-            }
-
             signinPage.goToPage()
-            signinPage.fillForm(user)
+            signinPage.fillForm(this.passWrong)
             signinPage.submitForm()
 
             signinPage.toast.textConfirm('Ocorreu um erro ao fazer login, verifique suas credenciais.')

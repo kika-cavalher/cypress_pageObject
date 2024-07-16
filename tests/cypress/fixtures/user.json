@@ -1,0 +1,29 @@
+
+{
+  "success": {
+    "name": "Erica Cavalher",
+    "is_provider": true,
+    "email": "erica.cavalher@gmail.com",
+    "password": "Kika1234"
+  },
+  "emailRandom": {
+    "email": null,
+    "name": "Erica Cavalher",
+    "password": "Kika1234"
+  },
+  "emailInv": {
+    "name": "Erica Cavalher",
+    "email": "erica.cavalhergmail.com",
+    "password": "Kika1234"
+  },
+  "passInv": {
+    "name": "Erica Cavalher",
+    "email": "erica.cavalhergmail.com",
+    "password": null
+  },
+  "passWrong": {
+    "name": "Erica Cavalher",
+    "email": "erica.cavalher@gmail.com",
+    "password": "1234"
+  }
+}
