@@ -2,11 +2,13 @@ require('cypress-xpath');
 
 import {el} from './elements.js'
 import toast from '../../components/toast/index.js'
+import errorField from '../../components/errorField/index.js'
 
 
 class SignupPage {
     constructor() {
         this.toast = toast
+        this.errorField = errorField
     }
 
     goToPage() {
@@ -21,21 +23,6 @@ class SignupPage {
 
     submitForm() {
         cy.contains(el.signupButton).click()
-    }
-
-    alertErrorEmail() {
-        cy.xpath(el.errorEmail)
-            .should('be.visible')
-    }
-
-    alertErrorPassword() {
-        cy.xpath(el.errorPassword)
-            .should('be.visible')
-    }
-
-    alertErrorName() {
-        cy.xpath(el.errorName)
-            .should('be.visible')
     }
 }
 

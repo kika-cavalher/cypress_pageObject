@@ -35,7 +35,7 @@ describe('signin', function () {
 
         before(function () {
             // Para fazer um call back e executar um antes do outro e nao tudo junto)
-            cy.postUser(user).then(function(){
+            cy.postUser(user).then(function () {
                 user.password = 'Kika1111'
             })
         })
@@ -47,6 +47,32 @@ describe('signin', function () {
 
             signinPage.toast.textConfirm('Ocorreu um erro ao fazer login, verifique suas credenciais.')
         })
+    })
+
+    context('When the user write a incorrect email', function () {
+        const emails = [
+            'erica.cavalhergmail.com',
+            'gmail.com',
+            '@gmail.com',
+            '@',
+            'erica@',
+            '1111',
+            '#$%^&*("',
+            'xpTo123'
+        ]
+
+        emails.forEach(function (email) {
+            it('Must warning error in email:' + email, function () {
+                const user = { email: email, password: 'Kika1234' }
+
+                signinPage.goToPage()
+                signinPage.fillForm(user)
+                signinPage.submitForm()
+
+                signinPage.errorField.alertErrorEmail()
+            })
+        })
+
     })
 
 })

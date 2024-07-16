@@ -2,11 +2,13 @@ require('cypress-xpath');
 
 import { el } from './elements.js'
 import toast from '../../components/toast/index.js'
+import errorField from '../../components/errorField/index.js'
 
 
 class SigninPage {
     constructor() {
         this.toast = toast
+        this.errorField = errorField
     }
 
     goToPage() {

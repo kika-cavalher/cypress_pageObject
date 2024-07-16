@@ -59,7 +59,7 @@ describe('signup', function () {
             signupPage.goToPage()
             signupPage.fillForm(userPost)
             signupPage.submitForm()
-            toast.textConfirm('Email já cadastrado para outro usuário.')
+            signupPage.toast.textConfirm('Email já cadastrado para outro usuário.')
 
             // Pegar o body para ficar mais facil visualizar um elemento
             // cy.wait(1000)
@@ -87,7 +87,7 @@ describe('signup', function () {
 
         // Espera o ouvinte fazer o req e pega o status 200 e coloca para a app achar que deu sucesso.
         cy.wait('@postUser')
-        toast.textConfirm('Agora você pode fazer seu login no Samurai Barbershop!')
+        signupPage.toast.textConfirm('Agora você pode fazer seu login no Samurai Barbershop!')
     })
 })
 
@@ -102,7 +102,7 @@ context('Password incorreta', function () {
         signupPage.goToPage()
         signupPage.fillForm(userErrorEmail)
         signupPage.submitForm()
-        signupPage.alertErrorEmail()
+        signupPage.errorField.alertErrorEmail()
     })
 })
 
@@ -127,7 +127,7 @@ context('Senha incorreta', function () {
     })
 
     afterEach(function () {
-        signupPage.alertErrorPassword()
+        signupPage.errorField.alertErrorPassword()
     })
 
 })
@@ -136,8 +136,8 @@ context('Filds required', function () {
     it('Must be visible error mensage', function () {
         signupPage.goToPage()
         signupPage.submitForm()
-        signupPage.alertErrorName()
-        signupPage.alertErrorEmail()
-        signupPage.alertErrorPassword()
+        signupPage.errorField.alertErrorName()
+        signupPage.errorField.alertErrorEmail()
+        signupPage.errorField.alertErrorPassword()
     })
 })
