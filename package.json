@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "cypress-xpath": "^2.0.1",
+    "faker": "^6.6.6",
+    "faker-js": "^1.0.0",
     "moment": "^2.30.1",
     "pg": "^8.12.0"
   }

@@ -27,6 +27,7 @@ cd/tests Iniciar testes -- npx cypress open
 Instalar xpath
 yarn add cypress-xpath
 yarn add moment -D
+yarn add @faker-js/faker
 
 Erro de API:
   code: 'EAUTH',
