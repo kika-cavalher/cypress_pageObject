@@ -1,4 +1,5 @@
 import dashPage from '../support/pages/dash/index.js'
+import {costumer, barber, appointmentHour} from '../support/factories/index.js'
 
 
 describe('dashBarber', function () {
@@ -21,10 +22,10 @@ describe('dashBarber', function () {
         });
 
         it.only('Must show the appointment in the dash', function () {
-            dashPage.loginBarber(this.successBarber)
+            dashPage.loginBarber(barber)
             dashPage.calendarShouldBeVisible() 
             dashPage.chooseNextDay(Cypress.env('appointmentDay'))
-            dashPage.appointmentShouldBeVisible(this.successCostumer, '14:00')
+            dashPage.appointmentShouldBeVisible(costumer, appointmentHour.hour)
         });
     })
 })
