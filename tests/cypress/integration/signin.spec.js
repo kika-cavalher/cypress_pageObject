@@ -1,5 +1,5 @@
 import signinPage from '../support/pages/signin/index.js'
-import dashPage from '../support/pages/header'
+import dashPage from '../support/pages/dash/index.js'
 
 describe('signin', function () {
     beforeEach(function () {
@@ -109,7 +109,7 @@ describe('signin', function () {
             signinPage.toast.textConfirm('Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada.')
         })
 
-        it.only('Can change the password and create new one', function () {
+        it('Can change the password and create new one', function () {
             signinPage.goToPage()
             signinPage.enterForgotPassword()
             signinPage.fillFormEmailForget(this.newPass)
