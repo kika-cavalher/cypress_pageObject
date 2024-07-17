@@ -9,6 +9,7 @@ Criar pasta test
 yarn init (na pasta test)
 
 yarn add cypress@9.5.0
+
 npx cypress open -- preparar o projeto para trabalhar com o framework e também chamar para abrir a pagina para rodar testes. 
 
 arquivo cypress.json estão as configs basicas do projeto.
@@ -25,7 +26,7 @@ cd/tests Iniciar testes -- npx cypress open
 
 Instalar xpath
 yarn add cypress-xpath
-
+yarn add moment -D
 
 Erro de API:
   code: 'EAUTH',

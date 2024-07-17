@@ -1,12 +1,16 @@
 require('cypress-xpath');
 
 import {el} from './elements.js'
-import header from '../../components/header/index.js'
 
 class DashPage {
-    constructor() {
-        this.header = header
+    scheduleAnAppointmentByCostumer(userBarber, userCostumer) {
+        cy.postUser(userBarber)
+        cy.postUser(userCostumer)
+        cy.apiLoginCostumerToken(userCostumer)
+        cy.handleBarberId(userBarber)
+        cy.createAppointment()
     }
+
 }
 
 export default new DashPage()

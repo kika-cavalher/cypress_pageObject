@@ -1,5 +1,5 @@
 import signinPage from '../support/pages/signin/index.js'
-import dashPage from '../support/pages/dash/index.js'
+import header from '../support/components/header/index.js'
 
 describe('signin', function () {
     beforeEach(function () {
@@ -24,7 +24,7 @@ describe('signin', function () {
             signinPage.fillForm(this.success)
             signinPage.submitForm()
 
-            dashPage.header.userLoggedIn(this.success.name)
+            header.userLoggedIn(this.success.name)
         })
     })
 
@@ -124,7 +124,7 @@ describe('signin', function () {
 
             signinPage.fillFormAfterChangePass(this.newPass)
             signinPage.submitForm()
-            dashPage.header.userLoggedIn(this.success.name)
+            header.userLoggedIn(this.success.name)
 
         })
     })

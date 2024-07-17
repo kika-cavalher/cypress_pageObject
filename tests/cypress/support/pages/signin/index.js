@@ -78,6 +78,13 @@ class SigninPage {
             .type(user.newPassword)  
     }
 
+    // loginBarber(user) {
+    //     goToPage()
+    //     fillForm(user)
+    //     submitForm()
+    //     header.userLoggedIn(user.name)
+    // }
+
 }
 
 export default new SigninPage()
