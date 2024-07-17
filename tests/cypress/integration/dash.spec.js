@@ -1,6 +1,4 @@
 import dashPage from '../support/pages/dash/index.js'
-import signinPage from '../support/pages/signin/index.js'
-import header from '../support/components/header/index.js'
 
 
 describe('dashBarber', function () {
@@ -23,21 +21,10 @@ describe('dashBarber', function () {
         });
 
         it.only('Must show the appointment in the dash', function () {
-            
-            // signinPage.loginBarber(this.successBarber)
-
-            signinPage.goToPage()
-            signinPage.fillForm(this.successBarber)
-            signinPage.submitForm()
-            header.userLoggedIn(this.successBarber.name)
-
-        
-
-
-
-
-
-    
+            dashPage.loginBarber(this.successBarber)
+            dashPage.calendarShouldBeVisible() 
+            dashPage.chooseNextDay(Cypress.env('appointmentDay'))
+            dashPage.appointmentShouldBeVisible(this.successCostumer, '14:00')
         });
     })
 })

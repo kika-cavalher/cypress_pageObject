@@ -88,7 +88,12 @@ Cypress.Commands.add('createAppointment', () => {
     };
 
     let now = new Date();
+    // Para sempre escolher o dia de amanha
     now.setDate(now.getDate() + 1);
+
+    // Para usar depois somente o dia selecionado. 
+    Cypress.env('appointmentDay', now.getDate())
+
     const date = moment(now).format('YYYY-MM-DD 14:00:00');
     
     const appointment = {
