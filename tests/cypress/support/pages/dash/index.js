@@ -13,16 +13,9 @@ class DashPage {
     scheduleAnAppointmentByCostumer(userBarber, userCostumer, hour) {
         cy.postUser(userBarber)
         cy.postUser(userCostumer)
-        cy.apiLoginCostumerToken(userCostumer)
+        cy.apiLogin(userCostumer, true)
         cy.handleBarberId(userBarber)
         cy.createAppointment(hour)
-    }
-
-    loginBarber(user) {
-        signinPage.goToPage()
-        signinPage.fillForm(user)
-        signinPage.submitForm()
-        header.userLoggedIn(user.name)
     }
 
     calendarShouldBeVisible() {

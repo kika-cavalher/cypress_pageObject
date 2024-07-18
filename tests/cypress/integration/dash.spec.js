@@ -22,7 +22,8 @@ describe('dashBarber', function () {
         });
 
         it.only('Must show the appointment in the dash', function () {
-            dashPage.loginBarber(barber)
+            cy.apiLogin(this.successBarber, true)
+            
             dashPage.calendarShouldBeVisible() 
             dashPage.chooseNextDay(Cypress.env('appointmentDay'))
             dashPage.appointmentShouldBeVisible(costumer, appointmentHour.hour)

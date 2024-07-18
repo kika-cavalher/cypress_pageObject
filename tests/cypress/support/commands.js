@@ -1,4 +1,14 @@
 import moment from 'moment'
+import { apiServer } from '../../cypress.json'
+import signinPage from './pages/signin/index'
+import header from './components/header/index.js'
+
+Cypress.Commands.add('loginBarber', (user) => {
+    signinPage.goToPage()
+    signinPage.fillForm(user)
+    signinPage.submitForm()
+    header.userLoggedIn(user.name)
+});
 
 Cypress.Commands.add('postUser', function (user) {
     // Remover o usuário antes de tentar criar
@@ -7,7 +17,7 @@ Cypress.Commands.add('postUser', function (user) {
     });
 
     // Fazer uma requisição POST para criar o usuário
-    cy.request('POST', 'http://localhost:3333/users', user).then((response) => {
+    cy.request('POST', apiServer + '/users', user).then((response) => {
         expect(response.status).to.eq(200);
     });
 });
@@ -19,13 +29,13 @@ Cypress.Commands.add('delUser', (user) => {
 });
 
 Cypress.Commands.add('recoveryPass', (user) => {
-    cy.request('POST', 'http://localhost:3333/password/forgot', { email: user.email }).then((response) => {
+    cy.request('POST', apiServer + '/password/forgot', { email: user.email }).then((response) => {
         expect(response.status).to.eq(204);
     });
 });
 
 Cypress.Commands.add('recoveryPass', (user) => {
-    cy.request('POST', 'http://localhost:3333/password/forgot', { email: user.email }).then((response) => {
+    cy.request('POST', apiServer + '/password/forgot', { email: user.email }).then((response) => {
         expect(response.status).to.eq(204);
 
         cy.task('findToken', user.email).then((result) => {
@@ -36,8 +46,8 @@ Cypress.Commands.add('recoveryPass', (user) => {
     });
 });
 
-Cypress.Commands.add('apiLoginCostumerToken', (user) => {
-
+Cypress.Commands.add('apiLogin', (user, setLocalStorage = false) => {
+    //setLocalStorage = false, com o = falte o argumento vira opcional. (user, setLocalStorage = false)
     // Para pegar somente os dados que eu preciso
     const payload = {
         email: user.email,
@@ -46,12 +56,23 @@ Cypress.Commands.add('apiLoginCostumerToken', (user) => {
 
     cy.request({
         method: 'POST',
-        url: 'http://localhost:3333/sessions',
+        //Interpolacao de valores
+        url: `${apiServer}/sessions`,
         body: payload
-    }).then(function(response) {
+    }).then(function (response) {
         expect(response.status).to.eq(200);
         Cypress.env('apiToken', response.body.token)
+
+        if (setLocalStorage) {
+            const { token, user } = response.body
+            window.localStorage.setItem('@Samurai:token', token)
+            window.localStorage.setItem('@Samurai:user', JSON.stringify(user))
+        }
     })
+
+    if (setLocalStorage) {
+        cy.visit('/dashboard')
+    }
 });
 
 
@@ -62,7 +83,7 @@ Cypress.Commands.add('handleBarberId', (emailBarber) => {
 
     cy.request({
         method: 'GET',
-        url: 'http://localhost:3333/providers',
+        url: apiServer + '/providers',
         headers: header
     }).then(response => {
         expect(response.status).to.eq(200);
@@ -94,8 +115,8 @@ Cypress.Commands.add('createAppointment', (hour) => {
     // Para usar depois somente o dia selecionado. 
     Cypress.env('appointmentDay', now.getDate())
 
-    const date = moment(now).format('YYYY-MM-DD ' + hour);
-    
+    const date = moment(now).format(`YYYY-MM-DD ${hour}:00`);
+
     const appointment = {
         provider_id: Cypress.env('barberId'),
         date: date
@@ -103,11 +124,11 @@ Cypress.Commands.add('createAppointment', (hour) => {
 
     cy.request({
         method: 'POST',
-        url: 'http://localhost:3333/appointments',
+        url: apiServer + '/appointments',
         headers: header,
         body: appointment,
         failOnStatusCode: false // Adiciona isso para não falhar no código de status
-    }).then(function(response) {
+    }).then(function (response) {
         expect(response.status).to.eq(200);
     });
 });
