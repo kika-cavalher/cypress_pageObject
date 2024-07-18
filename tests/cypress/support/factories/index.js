@@ -1,3 +1,5 @@
+import _ from 'underscore'
+
 exports.costumer = {
     name: 'Erica Costumer',
     is_provider: true,
@@ -13,5 +15,6 @@ exports.barber = {
 }
 
 exports.appointmentHour = {
-    hour: '14:00'
+    //Sorteia um valor unico dentro de um array a cada teste. 
+    hour: _.sample(['08:00', '10:00', '14:00'])
 }

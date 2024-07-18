@@ -10,12 +10,12 @@ class DashPage {
         this.signinPage = signinPage
     }
 
-    scheduleAnAppointmentByCostumer(userBarber, userCostumer) {
+    scheduleAnAppointmentByCostumer(userBarber, userCostumer, hour) {
         cy.postUser(userBarber)
         cy.postUser(userCostumer)
         cy.apiLoginCostumerToken(userCostumer)
         cy.handleBarberId(userBarber)
-        cy.createAppointment()
+        cy.createAppointment(hour)
     }
 
     loginBarber(user) {

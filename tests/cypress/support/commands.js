@@ -82,7 +82,7 @@ Cypress.Commands.add('handleBarberId', (emailBarber) => {
     });
 });
 
-Cypress.Commands.add('createAppointment', () => {
+Cypress.Commands.add('createAppointment', (hour) => {
     const header = {
         authorization: 'Bearer ' + Cypress.env('apiToken')
     };
@@ -94,7 +94,7 @@ Cypress.Commands.add('createAppointment', () => {
     // Para usar depois somente o dia selecionado. 
     Cypress.env('appointmentDay', now.getDate())
 
-    const date = moment(now).format('YYYY-MM-DD 14:00:00');
+    const date = moment(now).format('YYYY-MM-DD ' + hour);
     
     const appointment = {
         provider_id: Cypress.env('barberId'),

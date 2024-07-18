@@ -18,7 +18,7 @@ describe('dashBarber', function () {
     context('When the costumer did a apointment in the app', function () {
 
         beforeEach(function () {
-            dashPage.scheduleAnAppointmentByCostumer(this.successBarber, this.successCostumer)
+            dashPage.scheduleAnAppointmentByCostumer(this.successBarber, this.successCostumer, appointmentHour.hour)
         });
 
         it.only('Must show the appointment in the dash', function () {

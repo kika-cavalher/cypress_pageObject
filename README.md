@@ -28,6 +28,7 @@ Instalar xpath
 yarn add cypress-xpath
 yarn add moment -D
 yarn add @faker-js/faker
+yarn add underscore -D
 
 Erro de API:
   code: 'EAUTH',
